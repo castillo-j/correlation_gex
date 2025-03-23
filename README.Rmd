@@ -12,7 +12,7 @@ Analysis of correlations between mutational indicators (e.g., tumor mutational b
 
 # Structure the R project as follow:
 
-```{r eval=FALSE}
+```{eval=FALSE}
 ├── README.md
 ├── data              <- Raw data, avoid editing directly.
 ├── data_interim      <- Intermidiate data that has be transformed.
