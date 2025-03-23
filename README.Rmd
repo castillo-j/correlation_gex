@@ -18,7 +18,7 @@ Analysis of correlations between mutational indicators (e.g., tumor mutational b
 ├── data_interim      <- Intermidiate data that has be transformed.
 ├── data_processed    <- Final data sets for making plots and sharing.
 ├── scrips
-|   ├── 1_process.r     <- Script to format raw data for correlation analysis (varies by input)
+|   ├── 1_process.r     <- Format raw data for analysis (varies by input)
 |   ├── 2_correlation.r <- Correlation script
 |   ├── 3_plots.r       <- Script for plots and table outputs
 ├── results             <- Generated plots, tables, ppts
