@@ -29,9 +29,6 @@ dds<-estimateSizeFactors(dds)
 assays(se_obj)$norm_count<-counts(dds, normalized=TRUE) # normalized counts
 assays(se_obj)$vst_count<-assay(vst(dds,blind=F))       # for visualization
 
-# Set gene names as row names and ensure uniqueness
-rownames(se_obj)<-make.unique(rowData(se_obj)$gene_name)
-
 # Convert normalized counts to a dataframe
 gex_table<-as.data.frame(t(assay(se_obj,'norm_count')))
 
@@ -59,7 +56,15 @@ corr_table$p.value <- sig_table$p.value
 # Adjust p-values using Benjamini-Hochberg correction
 corr_table$p.adj <- p.adjust(corr_table$p.value, method = "BH")
 
+
+# Add gene annotations
+gene_info <- rowData(se_obj)[, c("gene_name", "gene_type", "gene_id")]
+corr_table <- merge(gene_info, corr_table, by = "row.names", all.x = TRUE)
+rownames(corr_table) <- corr_table$Row.names
+corr_table$Row.names <- NULL
+
 # Output dimensions and preview
+head(corr_table)
 write.csv(corr_table,paste0('data_processed/',output))
 
 
